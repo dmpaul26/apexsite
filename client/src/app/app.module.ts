@@ -6,9 +6,10 @@ import { PlayerlistComponent } from './playerlist/playerlist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule, MatTableModule, MatSortModule} from '@angular/material';
+import {MatNativeDateModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {DemoMaterialModule} from './material-module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -20,11 +21,13 @@ import {DemoMaterialModule} from './material-module';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    DemoMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
