@@ -9,12 +9,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AppRoutingModule } from './/app-routing.module';
+import { PlayerComponent } from './player/player.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerlistComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
