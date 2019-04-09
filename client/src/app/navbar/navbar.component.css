@@ -1,0 +1,16 @@
+.navbar-collapse.in,
+.navbar-collapse.collapsing {
+    clear: left;
+}
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #cccccc;
+    border-radius: 1px;
+}
+
+.navbar-nav .navbar-header {
+    color: white;
+}

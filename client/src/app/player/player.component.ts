@@ -39,6 +39,7 @@ export class PlayerComponent implements OnInit {
     this.playerName = this.activatedRoute.snapshot.params.playerName;
     this.loadPlayerGames();
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
    }
 
   ngOnInit() {
@@ -58,6 +59,7 @@ export class PlayerComponent implements OnInit {
   setDataSource(games) {
     this.dataSource = new MatTableDataSource(games);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(filterValue: string) {

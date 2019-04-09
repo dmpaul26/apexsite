@@ -1,3 +1,4 @@
+import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -11,6 +12,8 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AppRoutingModule } from './/app-routing.module';
 import { PlayerComponent } from './player/player.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddgameComponent } from './addgame/addgame.component';
 
 
 @NgModule({
@@ -18,6 +21,8 @@ import { PlayerComponent } from './player/player.component';
     AppComponent,
     PlayerlistComponent,
     PlayerComponent,
+    NavbarComponent,
+    AddgameComponent
   ],
   imports: [
     BrowserModule,
