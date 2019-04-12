@@ -6,4 +6,5 @@ module.exports = function(app) {
     // user Routes
     app.get('/api/getPlayerList', playerList.getAll)
     app.get('/api/getGameLog/:playerName', player.getByPlayerName)
+    app.post('/api/getPlayerList', playerList.getByDate)
   };
