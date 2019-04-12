@@ -7,7 +7,7 @@ import { PlayerlistComponent } from './playerlist/playerlist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatDatepickerModule} from '@angular/material';
+import {MatNativeDateModule, MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatDatepickerModule, MatButtonModule} from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AppRoutingModule } from './/app-routing.module';
@@ -31,6 +31,7 @@ import { AddgameComponent } from './addgame/addgame.component';
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatButtonModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,

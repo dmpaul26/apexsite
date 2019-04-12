@@ -3,15 +3,20 @@ import { MatPaginator, MatSort, MatTableDataSource, MatDatepicker } from '@angul
 import { Player } from './player.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { NumberSymbol } from '@angular/common';
 
 export interface PlayerData {
   playername: string;
   gamesplayed: number;
   wins: number;
   averagedamage: number;
+  kills: number;
+  damageperkill: number;
+  killspergame: number;
 }
 
 export interface PlayerListRequest {
+  all: boolean;
   date: Date;
 }
 
@@ -25,7 +30,7 @@ interface PlayerListResponse {
   styleUrls: ['./playerlist.component.css']
 })
 export class PlayerlistComponent implements OnInit {
-  displayedColumns: string[] = ['playername', 'gamesplayed', 'wins', 'averagedamage'];
+  displayedColumns: string[] = ['playername', 'gamesplayed', 'wins', 'winpercent', 'averagedamage', 'kills', 'damageperkill', 'killspergame'];
   dataSource: MatTableDataSource<PlayerData> = new MatTableDataSource([]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,7 +42,7 @@ export class PlayerlistComponent implements OnInit {
     const changed = this._selectedDate !== value;
     this._selectedDate = value;
     if(changed) {
-       this.loadDataByDate(this._selectedDate);
+       this.loadDataByDate();
     }
   }
 
@@ -46,7 +51,7 @@ export class PlayerlistComponent implements OnInit {
   }
 
   constructor(private http: HttpClient) {
-    this.loadData();
+    this.loadOverallData();
     this.dataSource.sort = this.sort;
   }
 
@@ -55,7 +60,7 @@ export class PlayerlistComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  loadData() {
+  loadOverallData() {
     this.http.get<PlayerListResponse>(environment.API_URL + '/api/getPlayerList'
     ).subscribe((data: PlayerListResponse) => {
         console.log(data);
@@ -64,8 +69,19 @@ export class PlayerlistComponent implements OnInit {
     error => console.log(error));
   }
 
-  loadDataByDate(date) {
+  loadDataByDate() {
     const request: PlayerListRequest = <PlayerListRequest>{ date: this._selectedDate }
+    this.http.post<PlayerListResponse>(environment.API_URL + '/api/getPlayerList',
+      request
+    ).subscribe((data: PlayerListResponse) => {
+        console.log(data);
+        this.setDataSource(data);
+    },
+    error => console.log(error));
+  }
+
+  loadDataForAllDates() {
+    const request: PlayerListRequest = <PlayerListRequest>{ all: true }
     this.http.post<PlayerListResponse>(environment.API_URL + '/api/getPlayerList',
       request
     ).subscribe((data: PlayerListResponse) => {
@@ -77,6 +93,8 @@ export class PlayerlistComponent implements OnInit {
 
   setDataSource(players) {
     this.dataSource = new MatTableDataSource(players);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator.pageSize = 25; // default page size
     this.dataSource.sort = this.sort;
   }
 

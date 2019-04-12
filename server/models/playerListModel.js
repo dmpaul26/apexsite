@@ -29,11 +29,20 @@ PlayerList.getAll = async function (result) {
 }
 
 PlayerList.getByDate = async function (date, result) {
-    const query = 'select * from playerlist_date where date = $1';
-    const values = [ date ];
+    if (date) {
+        var query = 'select * from playerlist_date where date = $1';
+        var values = [ date ];
+    } else {
+        var query = 'select * from playerlist_date';
+        var values = undefined;
+    }
     var playerList = {}
     try {
-        var queryResult = await database.query(query, values)
+        if (values) {
+            var queryResult = await database.query(query, values)
+        } else {
+            var queryResult = await database.query(query)
+        }
         var error = ''
         if (queryResult.length != 0) {
             playerList = queryResult;

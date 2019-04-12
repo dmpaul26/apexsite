@@ -59,6 +59,7 @@ export class PlayerComponent implements OnInit {
   setDataSource(games) {
     this.dataSource = new MatTableDataSource(games);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator.pageSize = 25; // default page size
     this.dataSource.paginator = this.paginator;
   }
 
