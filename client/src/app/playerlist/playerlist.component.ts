@@ -45,7 +45,7 @@ export class PlayerlistComponent implements OnInit {
   public set selectedDate(value: Date) {
     const changed = this._selectedDate !== value;
     this._selectedDate = value;
-    if(changed) {
+    if (changed) {
        this.loadDataByDate();
     }
   }
