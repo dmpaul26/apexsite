@@ -13,6 +13,9 @@ export interface PlayerData {
   kills: number;
   damageperkill: number;
   killspergame: number;
+  revivespergame: number;
+  respawnspergame: number;
+  isMaxDamage: boolean;
 }
 
 export interface PlayerListRequest {
@@ -30,7 +33,8 @@ interface PlayerListResponse {
   styleUrls: ['./playerlist.component.css']
 })
 export class PlayerlistComponent implements OnInit {
-  displayedColumns: string[] = ['playername', 'gamesplayed', 'wins', 'winpercent', 'averagedamage', 'kills', 'damageperkill', 'killspergame'];
+  displayedColumns: string[] = ['playername', 'gamesplayed', 'wins', 'winpercent', 'averagedamage',
+                                'kills', 'damageperkill', 'killspergame', 'respawnspergame', 'revivespergame'];
   dataSource: MatTableDataSource<PlayerData> = new MatTableDataSource([]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

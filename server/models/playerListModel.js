@@ -20,7 +20,10 @@ PlayerList.getAll = async function (result) {
         if (error) {
             console.log(error)
         }
-        result(playerList)
+        markMaxDamage(playerList)
+        .then((playerList) => {
+            result(playerList)
+        })
     }
     catch (err) {
         console.log(err)
@@ -61,6 +64,18 @@ PlayerList.getByDate = async function (date, result) {
         console.log(err)
         result(err, playerList)
     }
+}
+
+async function markMaxDamage(playerList) {
+    for (let i = 0; i < playerList.length; i++) {
+        if (i === 0) {
+            playerList[i].isMaxDamage = true;
+        } else {
+            playerList[i].isMaxDamage = false;
+        }
+    }
+
+    return playerList;
 }
 
 module.exports = PlayerList
