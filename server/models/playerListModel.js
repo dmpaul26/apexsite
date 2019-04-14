@@ -58,7 +58,10 @@ PlayerList.getByDate = async function (date, result) {
         if (error) {
             console.log(error)
         }
-        result(playerList)
+        markMaxDamage(playerList)
+        .then((playerList) => {
+            result(playerList)
+        })
     }
     catch (err) {
         console.log(err)
