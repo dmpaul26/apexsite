@@ -14,6 +14,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { PlayerComponent } from './player/player.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddgameComponent } from './addgame/addgame.component';
+import { TeamlistComponent } from './teamlist/teamlist.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AddgameComponent } from './addgame/addgame.component';
     PlayerlistComponent,
     PlayerComponent,
     NavbarComponent,
-    AddgameComponent
+    AddgameComponent,
+    TeamlistComponent
   ],
   imports: [
     BrowserModule,

@@ -55,3 +55,4 @@ async function retrieveStatsDayPlayer() {
 
 var routes = require('./routes')
 routes.player(app)
+routes.team(app)
