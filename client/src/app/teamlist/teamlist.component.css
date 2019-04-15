@@ -14,3 +14,7 @@ td, th {
 button {
   margin-left: 15px;
 }
+
+.make-bold {
+    font-weight: bold;
+}
