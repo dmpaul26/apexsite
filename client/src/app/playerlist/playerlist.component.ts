@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource, MatDatepicker } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDatepicker, DateAdapter } from '@angular/material';
 import { Player } from './player.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -44,6 +44,7 @@ export class PlayerlistComponent implements OnInit {
 
   public set selectedDate(value: Date) {
     const changed = this._selectedDate !== value;
+    console.log('selectedDate = ' + this._selectedDate + ' value = ' + value);
     this._selectedDate = value;
     if (changed) {
        this.loadDataByDate();
@@ -65,6 +66,10 @@ export class PlayerlistComponent implements OnInit {
   }
 
   loadOverallData() {
+    if (this._selectedDate) {
+      this._selectedDate = null;
+    }
+
     this.http.get<PlayerListResponse>(environment.API_URL + '/api/getPlayerList'
     ).subscribe((data: PlayerListResponse) => {
         console.log(data);
@@ -93,6 +98,24 @@ export class PlayerlistComponent implements OnInit {
         this.setDataSource(data);
     },
     error => console.log(error));
+  }
+
+  loadToday() {
+    const today: Date = new Date();
+    today.setHours(0, 0, 0, 0);
+    this.selectedDate = today;
+  }
+
+  loadPreviousDay() {
+    const date: Date = new Date(this.selectedDate);
+    date.setDate(date.getDate() - 1);
+    this.selectedDate = date;
+  }
+
+  loadNextDay() {
+    const date: Date = new Date(this.selectedDate);
+    date.setDate(date.getDate() + 1);
+    this.selectedDate = date;
   }
 
   setDataSource(players) {
