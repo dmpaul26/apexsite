@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Game } from './game.model';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSortable } from '@angular/material';
 import { environment } from 'src/environments/environment';
 
 export interface GameData {
@@ -58,9 +58,10 @@ export class PlayerComponent implements OnInit {
 
   setDataSource(games) {
     this.dataSource = new MatTableDataSource(games);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator.pageSize = 25; // default page size
     this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator.pageSize = 25; // default page size
+    this.dataSource.sort = this.sort;
+    this.dataSource.sort.sort(<MatSortable>{ id: 'timestamp', start: 'desc' });
   }
 
   applyFilter(filterValue: string) {

@@ -8,13 +8,13 @@
     <!-- ID Column -->
     <ng-container matColumnDef="timestamp">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-      <td mat-cell *matCellDef="let row"> {{row.timestamp}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.timestamp | date:'MM-dd-yyyy'}} </td>
     </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="win">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Win </th>
-      <td mat-cell *matCellDef="let row"> {{row.win}} </td>
+      <td mat-cell *matCellDef="let row" class="win" [ngClass]="{'make-green': row.win }"> {{row.win}} </td>
     </ng-container>
 
     <!-- Name Column -->

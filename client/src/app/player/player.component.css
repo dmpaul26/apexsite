@@ -10,3 +10,13 @@ table {
   td, th {
     width: 17%;
   }
+
+.win {
+  font-weight: bold;
+  color: red;
+}
+
+.make-green {
+  font-weight: bold;
+  color: green;
+}

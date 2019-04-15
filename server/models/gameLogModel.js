@@ -21,6 +21,7 @@ GameLog.getByPlayerName = async function (playerName, result) {
         if (error) {
             console.log(error)
         }
+        
         result(gameLog)
     }
     catch (err) {
@@ -29,4 +30,12 @@ GameLog.getByPlayerName = async function (playerName, result) {
     }
 }
 
+async function formatDates(gameLog) {
+    for (let i = 0; i < gameLog.length; i++) {
+        var timestamp = gameLog[i].timestamp;
+        gameLog[i].timestamp = gameLog[i].timestamp.substring(0, 10);
+    }
+
+    return gameLog;
+}
 module.exports = GameLog
