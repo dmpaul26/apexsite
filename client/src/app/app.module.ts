@@ -15,6 +15,7 @@ import { PlayerComponent } from './player/player.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddgameComponent } from './addgame/addgame.component';
 import { TeamlistComponent } from './teamlist/teamlist.component';
+import { TeamComponent } from './team/team.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TeamlistComponent } from './teamlist/teamlist.component';
     PlayerComponent,
     NavbarComponent,
     AddgameComponent,
-    TeamlistComponent
+    TeamlistComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
