@@ -6,8 +6,10 @@
   </mat-form-field>
   <button (click)="loadDataForAllDates()" mat-button>All dates</button>
   <button (click)="loadOverallData()" mat-button>Overall</button>
+  <button (click)="loadToday()" mat-button>Today</button>
+  <button (click)="loadPreviousDay()" mat-button>Previous Day</button>
+  <button (click)="loadNextDay()" mat-button>Next Day</button>
 </div>
-
 
 <mat-form-field class="filter">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -64,6 +66,18 @@
     <ng-container matColumnDef="killspergame">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Kills/Game </th>
       <td mat-cell *matCellDef="let row"> {{row.killspergame}} </td>
+    </ng-container>
+    
+    <!-- Color Column -->
+    <ng-container matColumnDef="revivespergame">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Revives/Game </th>
+      <td mat-cell *matCellDef="let row"> {{row.revivespergame}} </td>
+    </ng-container>
+    
+    <!-- Color Column -->
+    <ng-container matColumnDef="respawnspergame">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Respawns/Game </th>
+      <td mat-cell *matCellDef="let row"> {{row.respawnspergame}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

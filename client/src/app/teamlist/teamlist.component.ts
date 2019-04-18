@@ -29,7 +29,7 @@ interface TeamListResponse {
   styleUrls: ['./teamlist.component.css']
 })
 export class TeamlistComponent implements OnInit {
-  displayedColumns: string[] = ['players', 'gamesplayed', 'wins', 'winpercent', 'averagedamage', 'kills', 'damageperkill', 'killspergame'];
+  displayedColumns: string[] = ['players', 'gamesplayed', 'wins', 'winpercent', 'averagedamage', 'kills', 'damageperkill', 'killspergame', 'revivespergame', 'respawnspergame'];
   dataSource: MatTableDataSource<TeamData> = new MatTableDataSource([]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -77,6 +77,35 @@ export class TeamlistComponent implements OnInit {
         this.setDataSource(data);
     },
     error => console.log(error));
+  }
+
+  loadDataForAllDates() {
+    const request: TeamListRequest = <TeamListRequest>{ all: true }
+    this.http.post<TeamListResponse>(environment.API_URL + '/api/getTeamList',
+      request
+    ).subscribe((data: TeamListResponse) => {
+        console.log(data);
+        this.setDataSource(data);
+    },
+    error => console.log(error));
+  }
+
+  loadToday() {
+    const today: Date = new Date();
+    today.setHours(0, 0, 0, 0);
+    this.selectedDate = today;
+  }
+
+  loadPreviousDay() {
+    const date: Date = new Date(this.selectedDate);
+    date.setDate(date.getDate() - 1);
+    this.selectedDate = date;
+  }
+
+  loadNextDay() {
+    const date: Date = new Date(this.selectedDate);
+    date.setDate(date.getDate() + 1);
+    this.selectedDate = date;
   }
 
   setDataSource(players) {
