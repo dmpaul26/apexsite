@@ -42,6 +42,7 @@ export class TeamlistComponent implements OnInit {
     this._selectedDate = value;
     if(changed) {
        this.loadDataByDate();
+       sessionStorage['teamFilterDate'] = this._selectedDate;
     }
   }
 
@@ -50,7 +51,13 @@ export class TeamlistComponent implements OnInit {
   }
 
   constructor(private http: HttpClient) {
-    this.loadOverallData();
+    if (sessionStorage['teamFilterDate']) {
+      console.log('found session storage');
+      this.selectedDate = new Date(sessionStorage['teamFilterDate']);
+    } else {
+      this.loadOverallData();
+    }
+
     this.dataSource.sort = this.sort;
   }
   
