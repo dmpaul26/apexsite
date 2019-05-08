@@ -6,9 +6,12 @@ table {
     font-size: 14px;
     width: 100%;
 }
-  
+
 td, th {
-    width: 13%;
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 button {

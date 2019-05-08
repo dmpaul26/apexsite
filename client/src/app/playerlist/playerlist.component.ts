@@ -48,6 +48,7 @@ export class PlayerlistComponent implements OnInit {
     this._selectedDate = value;
     if (changed) {
        this.loadDataByDate();
+       sessionStorage['playerFilterDate'] = this._selectedDate;
     }
   }
 
@@ -56,8 +57,14 @@ export class PlayerlistComponent implements OnInit {
   }
 
   constructor(private http: HttpClient) {
-    this.loadOverallData();
     this.dataSource.sort = this.sort;
+    
+    if (sessionStorage['playerFilterDate']) {
+      console.log('found session storage');
+      this.selectedDate = new Date(sessionStorage['playerFilterDate']);
+    } else {
+      this.loadOverallData();
+    }
   }
 
   ngOnInit() {
